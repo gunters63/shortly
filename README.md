@@ -14,10 +14,7 @@ Notes:
 Source still uses randomly generated short urls. After the discussion I would rather use a simple 64-bit hash function
 Lots of stuff still missing due to time ran out (url canonicalisation, analytics, caching etc.)
 
-Run server:
-> node bin/www
-
-Output:
+Sample run:
 ```
 /Users/gunter/.nvm/versions/node/v4.3.2/bin/node bin/www
   shortly:server Listening on port 3000 +0ms

@@ -16,3 +16,12 @@ Lots of stuff still missing due to time ran out (url canonicalisation, analytics
 
 Run server:
 > node bin/www
+
+Output:
+'''
+/Users/gunter/.nvm/versions/node/v4.3.2/bin/node bin/www
+  shortly:server Listening on port 3000 +0ms
+POST /create 200 25.693 ms - 46
+GET /Sy9x0GK4 302 5.858 ms - 224
+
+Process finished with exit code 130

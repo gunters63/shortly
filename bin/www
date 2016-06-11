@@ -1,0 +1,99 @@
+#!/usr/bin/env node
+"use strict";
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('shortly:server');
+var http = require('http');
+var bluebird = require('bluebird');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error, reject) {
+  if (error.syscall !== 'listen') {
+    reject(error);
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      reject(error);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      reject(error);
+      break;
+    default:
+      reject(error);
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening(server, app, resolve) {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+  resolve(app)
+}
+
+
+module.exports = function initialiseAsync() {
+  return new Promise((resolve, reject) => {
+    var server = http.createServer(app);
+
+    /**
+     * Listen on provided port, on all network interfaces.
+     */
+
+    server.listen(port);
+    server.on('error', error => onError(error, reject));
+    server.on('listening', () => onListening(server, app, resolve));
+  });
+};
+  

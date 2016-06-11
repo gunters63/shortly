@@ -16,9 +16,21 @@ Lots of stuff still missing due to time ran out (url canonicalisation, analytics
 
 Sample run:
 ```
-/Users/gunter/.nvm/versions/node/v4.3.2/bin/node bin/www
+node bin/www
   shortly:server Listening on port 3000 +0ms
 POST /create 200 25.693 ms - 46
 GET /Sy9x0GK4 302 5.858 ms - 224
 
 Process finished with exit code 130
+```
+
+Run tests:
+```
+node ./node_modules/mocha/bin/_mocha --ui bdd ./tests
+POST /create 200 22.918 ms - 46
+POST /create 200 2.226 ms - 47
+GET /Skxb45ct4 302 3.694 ms - 47
+
+Process finished with exit code 0
+
+```

@@ -13,3 +13,6 @@ tests/test.js: Contains two small tests
 Notes:
 Source still uses randomly generated short urls. After the discussion I would rather use a simple 64-bit hash function
 Lots of stuff still missing due to time ran out (url canonicalisation, analytics, caching etc.)
+
+Run server:
+> node bin/www
